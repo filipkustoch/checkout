@@ -18,23 +18,27 @@
             </div>
             <button>Logowanie</button>
             <p>Masz już konto? Kliknij żeby się zalogować.</p>
-            <div class="checkboxContainer">
-                <input type="checkbox" value="innyAdres" name="innyAdres"><label for="innyAdres"> Stwórz nowe
+            <div class="checkboxContainer"><label for="innyAdres">
+                    <input type="checkbox" value="innyAdres" name="innyAdres" id="show-form"> Stwórz nowe
                     konto</label>
             </div>
-            <input type="text" placeholder="Login*" class="input" required>
-            <input type="password" placeholder="Hasło*" class="input" required>
-            <input type="password" placeholder="Potwierdź hasło*" class="input" required>
-            <input type="text" name="" id="" placeholder="Imię*" class="input" required>
-            <input type="text" placeholder="Nazwisko*" class="input" required>
-            <select name="kraj" id="kraj">
-                <option value="polska">Polska</option>
-                <option value="reszta">Reszta świata</option>
-            </select>
-            <input type="text" placeholder="Adres*" class="input" required>
-            <input type="text" placeholder="Kod pocztowy*" class="input" required>
-            <input type="text" placeholder="Miasto*" class="input" required>
-            <input type="tel" placeholder="Telefon*" class="input" required>
+            <div id="form-container" style="display: none;">
+                <form>
+                    <input type="text" placeholder="Login*" class="input" required>
+                    <input type="password" placeholder="Hasło*" class="input" required>
+                    <input type="password" placeholder="Potwierdź hasło*" class="input" required>
+                    <input type="text" name="" id="" placeholder="Imię*" class="input" required>
+                    <input type="text" placeholder="Nazwisko*" class="input" required>
+                    <select name="kraj" id="kraj">
+                        <option value="polska">Polska</option>
+                        <option value="reszta">Reszta świata</option>
+                    </select>
+                    <input type="text" placeholder="Adres*" class="input" required>
+                    <input type="text" placeholder="Kod pocztowy*" class="input" required>
+                    <input type="text" placeholder="Miasto*" class="input" required>
+                    <input type="tel" placeholder="Telefon*" class="input" required>
+                </form>
+            </div>
             <div class="checkboxContainer">
                 <input type="checkbox" value="innyAdres" name="innyAdres"><label for="innyAdres"> Dostawa pod inny
                     adres</label>
@@ -71,8 +75,8 @@
                         src="https://prestaguru.pl/blog/wp-content/uploads/2021/09/platnosc-za-pobraniem-cod-prestaguru.png"
                         alt=""> <label for=""> Płatności przy odbiorze</label></div>
                 <div class="radio-item"><input type="radio" class="input" name="platnosc"><img class="logo-dostawy"
-                        src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png"
-                        alt=""> <label for=""> Przelew bankowy - zwykły</label></div>
+                        src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png" alt=""> <label for="">
+                        Przelew bankowy - zwykły</label></div>
                 <button>Dodaj kod rabatowy</button>
             </div>
         </div>
@@ -120,6 +124,8 @@
             </div>
         </div>
     </div>
+    <!-- Skrypt JS -->
+    <script src="script.js"></script>
 </body>
 
 </html>
