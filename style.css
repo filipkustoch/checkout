@@ -73,6 +73,11 @@ input[type='radio'] {
   height: 1.65em;
 }
 
+.radio-item{
+  display: flex;
+  align-items: center;
+}
+
 .platnosci button {
   border-color: gray;
   color: gray;
@@ -149,4 +154,11 @@ input[type='radio'] {
 .licznik {
     width: 20%;
     text-align: center;
+}
+
+.logo-dostawy{
+  aspect-ratio: 540/371;
+  max-width: 100px;
+  max-height: 50px;
+  margin: 5px 10px;
 }

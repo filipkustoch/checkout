@@ -46,20 +46,33 @@
                 <div class="title">
                     <h3>2. Metoda dostawy</h3>
                 </div>
-                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <label for=""> Paczkomaty
-                        24/7</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <label for=""> Kurier
+                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <img class="logo-dostawy"
+                        src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png" alt=""> <label
+                        for=""> Paczkomaty 24/7</label></div>
+                <div class="radio-item"><input type="radio" class="input" name="dostawa"><img class="logo-dostawy"
+                        src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt=""> <label
+                        for=""> Kurier
                         DPD</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <label for=""> Kurier DPD
+                <div class="radio-item"><input type="radio" class="input" name="dostawa"><img class="logo-dostawy"
+                        src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt=""> <label
+                        for=""> Kurier DPD
                         pobranie</label></div>
             </div>
             <div class="platnosci">
                 <div class="title">
                     <h3>3. Metoda płatności</h3>
                 </div>
-                <input type="radio" class="input" name="platnosc"> <label for=""> PayU</label><br>
-                <input type="radio" class="input" name="platnosc"> <label for=""> Płatności przy odbiorze</label><br>
-                <input type="radio" class="input" name="platnosc"> <label for=""> Przelew bankowy - zwykły</label><br>
+                <div class="radio-item">
+                    <input type="radio" class="input" name="platnosc"> <img class="logo-dostawy"
+                        src="https://poland.payu.com/wp-content/uploads/sites/14/2020/05/PAYU_LOGO_LIME-990x640.png"
+                        alt=""> <label for=""> PayU</label>
+                </div>
+                <div class="radio-item"><input type="radio" class="input" name="platnosc"><img class="logo-dostawy"
+                        src="https://prestaguru.pl/blog/wp-content/uploads/2021/09/platnosc-za-pobraniem-cod-prestaguru.png"
+                        alt=""> <label for=""> Płatności przy odbiorze</label></div>
+                <div class="radio-item"><input type="radio" class="input" name="platnosc"><img class="logo-dostawy"
+                        src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png"
+                        alt=""> <label for=""> Przelew bankowy - zwykły</label></div>
                 <button>Dodaj kod rabatowy</button>
             </div>
         </div>
