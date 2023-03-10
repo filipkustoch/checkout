@@ -11,12 +11,17 @@
 
 <body>
     <div class="container">
+        <!-- Dane użytkownika -->
         <div class="dane">
             <div class="title">
                 <h3>1. Twoje dane</h3>
             </div>
             <button>Logowanie</button>
             <p>Masz już konto? Kliknij żeby się zalogować.</p>
+            <div class="checkboxContainer">
+                <input type="checkbox" value="innyAdres" name="innyAdres"><label for="innyAdres"> Stwórz nowe
+                    konto</label>
+            </div>
             <input type="text" placeholder="Login*" class="input" required>
             <input type="password" placeholder="Hasło*" class="input" required>
             <input type="password" placeholder="Potwierdź hasło*" class="input" required>
@@ -35,14 +40,18 @@
                     adres</label>
             </div>
         </div>
+        <!-- Metody dostaw i płatności -->
         <div class="metody">
             <div class="dostawy">
                 <div class="title">
                     <h3>2. Metoda dostawy</h3>
                 </div>
-                <input type="radio" class="input" name="dostawa"> <label for=""> Paczkomaty 24/7</label><br>
-                <input type="radio" class="input" name="dostawa"> <label for=""> Kurier DPD</label><br>
-                <input type="radio" class="input" name="dostawa"> <label for=""> Kurier DPD pobranie</label>
+                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <label for=""> Paczkomaty
+                        24/7</label></div>
+                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <label for=""> Kurier
+                        DPD</label></div>
+                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <label for=""> Kurier DPD
+                        pobranie</label></div>
             </div>
             <div class="platnosci">
                 <div class="title">
@@ -54,32 +63,29 @@
                 <button>Dodaj kod rabatowy</button>
             </div>
         </div>
+        <!-- Podsumowanie zamówienia -->
         <div class="podsumowanie">
             <div class="title">
                 <h3>4. Podsumowanie</h3>
             </div>
+            <!-- Produkty w koszyku -->
             <div class="item">
-                <div class="image-box">
-                    <img src="https://picsum.photos/200/100" alt="">
-                </div>
+                <div class="image-box"> <img src="https://picsum.photos/200/100" alt=""> </div>
                 <div class="opis">
                     <h4>Testowy produkt</h4>
                 </div>
                 <div class="licznik">1</div>
                 <div class="cena">115zł</div>
-
             </div>
             <div class="item">
-                <div class="image-box">
-                    <img src="https://picsum.photos/300/150" alt="">
-                </div>
+                <div class="image-box"> <img src="https://picsum.photos/300/150" alt=""> </div>
                 <div class="opis">
                     <h4>Testowy produkt</h4>
                 </div>
                 <div class="licznik">1</div>
                 <div class="cena">115zł</div>
-
             </div>
+            <!-- Kwota częściowa i łączna -->
             <hr class="hr-top">
             <div class="czesciowa">
                 <p>Suma częściowa</p>
