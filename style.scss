@@ -1,12 +1,16 @@
+// Converted to SCSS
+
+$font-family: Arial, Helvetica, sans-serif;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $font-family;
 }
 
 body {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -20,7 +24,7 @@ body {
 .data,
 .methods,
 .summary {
-  width: 30%;
+  width: 25%;
   min-width: 20rem;
   margin: 5px;
   padding: 5px;
@@ -54,11 +58,16 @@ body {
   text-align: center;
 }
 
+form {
+  width: 100%;
+}
+
 .input,
 #country {
-  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input[type='checkbox'] {
@@ -72,7 +81,7 @@ input[type='radio'] {
   height: 1.65em;
 }
 
-.radio-item{
+.radio-item {
   display: flex;
   align-items: center;
 }
@@ -119,45 +128,33 @@ input[type='radio'] {
 
 .checkboxContainer {
   margin-top: 10px;
+
+  label {
+    font-size: 0.85rem;
+  }
 }
 
-.checkboxContainer label {
-  font-size: 0.85rem;
-}
-
-.item {
-  margin: auto;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.image-box{
-    width: 25%;
-    margin-right: 5px;
-}
-
-.image-box img{
-    aspect-ratio: 2/1;
-    max-width: 100%;
-}
-
-.opis h4 {
-  font-weight: 800;
+.opis {
+  h4 {
+    font-weight: 800;
     font-size: 0.8rem;
-  color: #202020;
+    color: #202020;
+  }
 }
 
 .licznik {
-    width: 20%;
-    text-align: center;
+  width: 20%;
+  text-align: center;
 }
 
-.delivery-logo, .payment-logo{
+.delivery-logo,
+.payment-logo {
   aspect-ratio: 540/371;
   max-width: 100px;
   max-height: 50px;
   margin: 5px 10px;
+}
+
+.form-container form {
+  width: 15rem;
 }
