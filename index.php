@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
 
+<?php include "includes/db.php"; ?>
+<?php include "includes/classes.php"; ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +15,7 @@
 <body>
     <div class="container">
         <!-- Dane użytkownika -->
-        <div class="dane">
+        <div class="data">
             <div class="title">
                 <h3>1. Twoje dane</h3>
             </div>
@@ -29,7 +32,7 @@
                     <input type="password" placeholder="Potwierdź hasło*" class="input" required>
                     <input type="text" name="" id="" placeholder="Imię*" class="input" required>
                     <input type="text" placeholder="Nazwisko*" class="input" required>
-                    <select name="kraj" id="kraj">
+                    <select name="country" id="country">
                         <option value="polska">Polska</option>
                         <option value="reszta">Reszta świata</option>
                     </select>
@@ -45,36 +48,36 @@
             </div>
         </div>
         <!-- Metody dostaw i płatności -->
-        <div class="metody">
-            <div class="dostawy">
+        <div class="methods">
+            <div class="deliveries">
                 <div class="title">
                     <h3>2. Metoda dostawy</h3>
                 </div>
-                <div class="radio-item"><input type="radio" class="input" name="dostawa"> <img class="logo-dostawy"
+                <div class="radio-item"><input type="radio" class="input" name="delivery_method"> <img class="delivery-logo"
                         src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png" alt=""> <label
                         for=""> Paczkomaty 24/7</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="dostawa"><img class="logo-dostawy"
+                <div class="radio-item"><input type="radio" class="input" name="delivery_method"><img class="delivery-logo"
                         src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt=""> <label
                         for=""> Kurier
                         DPD</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="dostawa"><img class="logo-dostawy"
+                <div class="radio-item"><input type="radio" class="input" name="delivery_method"><img class="delivery-logo"
                         src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt=""> <label
                         for=""> Kurier DPD
                         pobranie</label></div>
             </div>
-            <div class="platnosci">
+            <div class="payments">
                 <div class="title">
                     <h3>3. Metoda płatności</h3>
                 </div>
                 <div class="radio-item">
-                    <input type="radio" class="input" name="platnosc"> <img class="logo-dostawy"
+                    <input type="radio" class="input" name="payment_method"> <img class="payment-logo"
                         src="https://poland.payu.com/wp-content/uploads/sites/14/2020/05/PAYU_LOGO_LIME-990x640.png"
                         alt=""> <label for=""> PayU</label>
                 </div>
-                <div class="radio-item"><input type="radio" class="input" name="platnosc"><img class="logo-dostawy"
+                <div class="radio-item"><input type="radio" class="input" name="payment_method"><img class="payment-logo"
                         src="https://prestaguru.pl/blog/wp-content/uploads/2021/09/platnosc-za-pobraniem-cod-prestaguru.png"
                         alt=""> <label for=""> Płatności przy odbiorze</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="platnosc"><img class="logo-dostawy"
+                <div class="radio-item"><input type="radio" class="input" name="payment_method"><img class="payment-logo"
                         src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png" alt=""> <label for="">
                         Przelew bankowy - zwykły</label></div>
                 <button>Dodaj kod rabatowy</button>
@@ -86,22 +89,8 @@
                 <h3>4. Podsumowanie</h3>
             </div>
             <!-- Produkty w koszyku -->
-            <div class="item">
-                <div class="image-box"> <img src="https://picsum.photos/200/100" alt=""> </div>
-                <div class="opis">
-                    <h4>Testowy produkt</h4>
-                </div>
-                <div class="licznik">1</div>
-                <div class="cena">115zł</div>
-            </div>
-            <div class="item">
-                <div class="image-box"> <img src="https://picsum.photos/300/150" alt=""> </div>
-                <div class="opis">
-                    <h4>Testowy produkt</h4>
-                </div>
-                <div class="licznik">1</div>
-                <div class="cena">115zł</div>
-            </div>
+            <?php $itemGenerator = new ItemGenerator(5);
+            $itemGenerator->generateItems();?>
             <!-- Kwota częściowa i łączna -->
             <hr class="hr-top">
             <div class="czesciowa">

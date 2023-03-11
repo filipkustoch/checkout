@@ -17,8 +17,8 @@ body {
   justify-content: center;
 }
 
-.dane,
-.metody,
+.data,
+.methods,
 .podsumowanie {
   width: 30%;
   min-width: 20rem;
@@ -26,7 +26,7 @@ body {
   padding: 5px;
 }
 
-.dostawy {
+.deliveries {
   margin-bottom: 10px;
 }
 
@@ -39,7 +39,7 @@ body {
   margin-bottom: 10px;
 }
 
-.dane button {
+.data button {
   border-color: red;
   color: red;
   font-weight: bold;
@@ -50,12 +50,12 @@ body {
   border-radius: 5px;
 }
 
-.dane p {
+.data p {
   text-align: center;
 }
 
 .input,
-#kraj {
+#country {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -78,7 +78,7 @@ input[type='radio'] {
   align-items: center;
 }
 
-.platnosci button {
+.payments button {
   border-color: gray;
   color: gray;
   font-weight: bold;
@@ -156,7 +156,7 @@ input[type='radio'] {
     text-align: center;
 }
 
-.logo-dostawy{
+.delivery-logo, .payment-logo{
   aspect-ratio: 540/371;
   max-width: 100px;
   max-height: 50px;
