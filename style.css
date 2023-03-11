@@ -19,7 +19,7 @@ body {
 
 .data,
 .methods,
-.podsumowanie {
+.summary {
   width: 30%;
   min-width: 20rem;
   margin: 5px;
@@ -89,7 +89,7 @@ input[type='radio'] {
   border-radius: 5px;
 }
 
-.podsumowanie textarea {
+.summary textarea {
   width: 100%;
   padding: 10px;
 }
@@ -103,17 +103,17 @@ input[type='radio'] {
   margin-bottom: 10px;
 }
 
-.lacznie,
-.czesciowa {
+.total,
+.partial {
   display: flex;
   padding: 10px;
 }
 
-.czesciowa p {
+.partial p {
   width: 50%;
 }
 
-.lacznie p {
+.total p {
   width: 50%;
   font-weight: bold;
 }

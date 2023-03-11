@@ -53,14 +53,16 @@
                 <div class="title">
                     <h3>2. Metoda dostawy</h3>
                 </div>
-                <div class="radio-item"><input type="radio" class="input" name="delivery_method"> <img class="delivery-logo"
-                        src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png" alt=""> <label
-                        for=""> Paczkomaty 24/7</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="delivery_method"><img class="delivery-logo"
+                <div class="radio-item"><input type="radio" class="input" name="delivery_method"> <img
+                        class="delivery-logo" src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png"
+                        alt=""> <label for=""> Paczkomaty 24/7</label></div>
+                <div class="radio-item"><input type="radio" class="input" name="delivery_method"><img
+                        class="delivery-logo"
                         src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt=""> <label
                         for=""> Kurier
                         DPD</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="delivery_method"><img class="delivery-logo"
+                <div class="radio-item"><input type="radio" class="input" name="delivery_method"><img
+                        class="delivery-logo"
                         src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt=""> <label
                         for=""> Kurier DPD
                         pobranie</label></div>
@@ -74,35 +76,39 @@
                         src="https://poland.payu.com/wp-content/uploads/sites/14/2020/05/PAYU_LOGO_LIME-990x640.png"
                         alt=""> <label for=""> PayU</label>
                 </div>
-                <div class="radio-item"><input type="radio" class="input" name="payment_method"><img class="payment-logo"
+                <div class="radio-item"><input type="radio" class="input" name="payment_method"><img
+                        class="payment-logo"
                         src="https://prestaguru.pl/blog/wp-content/uploads/2021/09/platnosc-za-pobraniem-cod-prestaguru.png"
                         alt=""> <label for=""> Płatności przy odbiorze</label></div>
-                <div class="radio-item"><input type="radio" class="input" name="payment_method"><img class="payment-logo"
-                        src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png" alt=""> <label for="">
+                <div class="radio-item"><input type="radio" class="input" name="payment_method"><img
+                        class="payment-logo" src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png"
+                        alt=""> <label for="">
                         Przelew bankowy - zwykły</label></div>
                 <button>Dodaj kod rabatowy</button>
             </div>
         </div>
         <!-- Podsumowanie zamówienia -->
-        <div class="podsumowanie">
+        <div class="summary">
             <div class="title">
                 <h3>4. Podsumowanie</h3>
             </div>
-            <!-- Produkty w koszyku -->
-            <?php $itemGenerator = new ItemGenerator(5);
-            $itemGenerator->generateItems();?>
+            <!-- Generowanie przedmiotów za pomocą klasy ItemGenerator -->
+            <?php
+            $itemGenerator = new ItemGenerator(5);
+            $itemGenerator->generateItems();
+            ?>
             <!-- Kwota częściowa i łączna -->
             <hr class="hr-top">
-            <div class="czesciowa">
+            <div class="partial">
                 <p>Suma częściowa</p>
                 <p style="text-align: right;">115,00zł</p>
             </div>
-            <div class="lacznie">
+            <div class="total">
                 <p>Łącznie</p>
                 <p style="text-align: right;">115,00zł</p>
             </div>
             <hr class="hr-bot">
-            <textarea name="" id="komentarz" cols="30" rows="5" placeholder="Komentarz"></textarea>
+            <textarea name="" id="comment" cols="30" rows="5" placeholder="Komentarz"></textarea>
             <div class="checkboxContainer">
                 <input type="checkbox" value="innyAdres" name="innyAdres"><label for="innyAdres"> Zapisz się, aby
                     otrzymywać newsletter</label>
