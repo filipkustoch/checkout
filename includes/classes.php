@@ -19,10 +19,15 @@ class ItemGenerator {
 
     public function generateItems() {
         // generowanie przedmiotów w pętli
+        $amount = 0; // deklaracja zmiennej kwoty
         for ($i = 0; $i < $this->quantity; $i++) {
             // zwiększenie wymiarów zdjęcia o 1
             $this->currentXDimension++;
             $this->currentYDimension++;
+
+            $random_number = rand(100, 999);
+
+            $amount += $random_number;
 
             // wygenerowanie kodu HTML dla przedmiotu
             echo "<div class='item'>
@@ -31,9 +36,10 @@ class ItemGenerator {
                         <h4>Testowy produkt</h4>
                     </div>
                     <div class='licznik'>1</div>
-                    <div class='cena'>115zł</div>
+                    <div class='cena'>$random_number zł</div>
                 </div>";
         }
+        return $amount;
     }
 }
 ?>
