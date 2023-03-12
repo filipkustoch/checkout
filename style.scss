@@ -11,7 +11,7 @@ $font-family: Arial, Helvetica, sans-serif;
 
 body {
   width: 60%;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .container {
@@ -37,7 +37,7 @@ body {
 .title {
   background-color: #a89f8f;
   color: white;
-  padding: 15px;
+  padding: 5px 15px;
   border-radius: 5px;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -114,7 +114,7 @@ input[type='radio'] {
 .total,
 .partial {
   display: flex;
-  padding: 10px;
+  padding: 0 10px;
 }
 
 .partial p {
@@ -157,4 +157,40 @@ input[type='radio'] {
 
 .form-container form {
   width: 15rem;
+}
+
+#confirm {
+  width: 100%;
+  background-color: #e64344;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 25px 15px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+}
+
+#confirm:hover {
+  background-color: #b93434;
+}
+
+#apply-discount:disabled{
+  background-color: lightgreen;
+}
+
+@media (max-width: 767px) {
+  .data,
+  .methods,
+  .summary {
+    width: 100%;
+    min-width: unset;
+    margin: 5px;
+    padding: 5px;
+  }
+
+  body {
+    width: 90%;
+    margin: auto;
+  }
 }

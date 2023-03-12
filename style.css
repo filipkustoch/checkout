@@ -1,18 +1,23 @@
 .item {
-    margin: auto;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .image-box{
-      width: 25%;
-      margin-right: 5px;
-  }
-  
-  .image-box img{
-      aspect-ratio: 2/1;
-      max-width: 100%;
-  }
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.image-box {
+  width: 25%;
+  margin-right: 5px;
+}
+
+.image-box img {
+  aspect-ratio: 2/1;
+  max-width: 100%;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
