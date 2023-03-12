@@ -1,12 +1,16 @@
 // Converted to SCSS
 
-$font-family: Arial, Helvetica, sans-serif;
+$font-family: "Open Sans", sans-serif;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: $font-family;
+}
+
+html{
+  font-family: "Open Sans";
 }
 
 body {
@@ -177,6 +181,12 @@ input[type='radio'] {
 
 #apply-discount:disabled{
   background-color: lightgreen;
+}
+
+#tekst-podziekowania{
+  border: solid 2px black;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 @media (max-width: 767px) {
