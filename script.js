@@ -81,7 +81,7 @@ const firstnameInput = document.querySelector('input[name="firstname"]');
 
 function validateFirstnameInput() {
   const firstnameValue = firstnameInput.value.trim();
-  const nameRegex = /^[a-zA-Z]+$/;
+  const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/;
 
   if (!nameRegex.test(firstnameValue)) {
     firstnameInput.setCustomValidity('Imię powinno zawierać tylko litery.');
@@ -102,7 +102,7 @@ const lastnameInput = document.querySelector('input[name="lastname"]');
 
 function validateLastnameInput() {
   const lastnameValue = lastnameInput.value.trim();
-  const lastnameRegex = /^[a-zA-Z]+$/;
+  const lastnameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/;
 
   if (!lastnameRegex.test(lastnameValue)) {
     lastnameInput.setCustomValidity('Nazwisko powinno zawierać tylko litery.');

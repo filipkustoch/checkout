@@ -27,6 +27,11 @@ $validatedLastname = validateLastname($lastname);
 if (is_string($validatedLastname)) {
   $errors[] = $validatedLastname;
 }
+
+//walidacja $address
+$validatedAddress = validateAddress($address);
+
+
 // sprawdzenie wartości liczbowych pola "amount"
 if (!is_numeric($amount) || $amount <= 0) {
     die("Nieprawidłowa wartość pola 'amount'");
@@ -35,7 +40,7 @@ if (!is_numeric($amount) || $amount <= 0) {
 // przygotowanie zapytania SQL
 $query = "INSERT INTO zamowienia (imie, nazwisko, kraj, adres, kod_pocztowy, miasto, telefon, dostawa, platnosc, komentarz, kwota) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $connection->prepare($query);
-$stmt->execute([$firstname, $lastname, $country, $address, $postcode, $city, $phonenumber, $delivery_method, $payment_method, $comment, $amount]);
+$stmt->execute([$validatedFirstname, $validatedLastname, $country, $validatedAddress, $postcode, $city, $phonenumber, $delivery_method, $payment_method, $comment, $amount]);
 
 // zwrócenie numeru zamówienia i kwoty
 echo mysqli_insert_id($connection) . " na kwotę " . $amount . " zł";

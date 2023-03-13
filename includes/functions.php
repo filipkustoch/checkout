@@ -1,7 +1,7 @@
 <?php 
 // funckja walidująca imię
 function validateFirstname($firstname) {
-    $nameRegex = '/^[a-zA-Z]+$/';
+    $nameRegex = '/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/';
     $trimmedFirstname = trim($firstname);
   
     if (!preg_match($nameRegex, $trimmedFirstname)) {
@@ -16,7 +16,7 @@ function validateFirstname($firstname) {
   }
 
 function validateLastname($lastname) {
-    $nameRegex = '/^[a-zA-Z]+$/';
+    $nameRegex = '/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/';
     $trimmedLastname = trim($lastname);
 
     if(!preg_match($nameRegex,$trimmedLastname)){
@@ -29,4 +29,18 @@ function validateLastname($lastname) {
           return $trimmedLastname;
     }
 }
+
+function validateAddress($address) {
+    GLOBAL $connection;
+    $trimmedAddress = trim($address);
+  
+    // ucieczka znaków specjalnych SQL
+    $escapedAddress = mysqli_real_escape_string($connection, $trimmedAddress);
+  
+    // zamiana znaków specjalnych HTML na ich encje
+    $escapedAddress = htmlspecialchars($escapedAddress, ENT_QUOTES, 'UTF-8');
+  
+    return $escapedAddress;
+  }
+  
 ?>
