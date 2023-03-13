@@ -1,13 +1,29 @@
-// pokazywanie formularza "stwórz nowe konto"
+// pokazywanie formularzy
 function newAccount() {
   const checkbox = document.getElementById('show-form');
   const formContainer = document.getElementById('form-container');
+  const checkboxAlt = document.getElementById('show-form_alt');
+  const formContainerAlt = document.getElementById('form-container_alt');
 
   checkbox.addEventListener('change', function () {
     if (checkbox.checked) {
       formContainer.style.display = 'block';
+      if(checkboxAlt.checked){
+        formContainerAlt.style.display = 'block';
+      }
     } else {
       formContainer.style.display = 'none';
+      if(checkboxAlt.checked){
+        formContainerAlt.style.display = 'none';
+      }
+    }
+  });
+
+  checkboxAlt.addEventListener('change', function () {
+    if (checkboxAlt.checked && checkbox.checked) {
+      formContainerAlt.style.display = 'block';
+    } else {
+      formContainerAlt.style.display = 'none';
     }
   });
 }
@@ -19,6 +35,8 @@ function sendData(event) {
   let amount = document.getElementById('discount-input').innerHTML;
   amount = parseInt(amount.replace(/[^0-9]/g, ''));
   formData.append('amount', amount);
+  const listOfProducts = document.getElementById('products-list').getAttribute('data-list');
+  formData.append('listOfProducts', listOfProducts);
   event.preventDefault();
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'includes/process_forms.php');

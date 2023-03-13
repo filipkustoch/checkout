@@ -26,12 +26,14 @@ class ItemGenerator {
         $this->amount = 0;
     }
 
-    /**
+     /**
      * Metoda generująca przedmioty
-     * @return string kod HTML przedmiotów
+     * @return array zawierający kod HTML przedmiotów i nazwy produktów oddzielone przecinkami
      */
-    public function generateItems(): string {
-        $items = '';
+    public function generateItems(): array {
+        $itemsHTML = '';
+        $list = '';
+        $nazwaproduktu = "Testowy produkt";
         for ($i = 0; $i < $this->quantity; $i++) {
             $this->currentXDimension++;
             $this->currentYDimension++;
@@ -39,16 +41,19 @@ class ItemGenerator {
             $randomNumber = random_int(100, 999);
             $this->amount += $randomNumber;
 
-            $items .= "<div class='item'>
+
+            $itemsHTML .= "<div class='item'>
                     <div class='image-box'> <img src='https://picsum.photos/{$this->currentXDimension}/{$this->currentYDimension}' alt=''> </div>
                     <div class='opis'>
-                        <h4>Testowy produkt</h4>
+                        <h4 class='product'>$nazwaproduktu</h4>
+                        <div class='licznik'>Ilość: 1</div>
                     </div>
-                    <div class='licznik'>1</div>
+                    
                     <div class='cena'>$randomNumber zł</div>
                 </div>";
+            $list .= $nazwaproduktu . ",";
         }
-        return $items;
+        return array($itemsHTML, $list);
     }
 
     /**

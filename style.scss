@@ -28,7 +28,7 @@ body {
 .data,
 .methods,
 .summary {
-  width: 25%;
+  width: 30%;
   min-width: 20rem;
   margin: 5px;
   padding: 5px;
@@ -146,11 +146,19 @@ input[type='radio'] {
   }
 }
 
-.licznik {
-  width: 20%;
-  text-align: center;
+.opis {
+  margin-right: 10%;
 }
 
+.licznik {
+  width: 100%;
+  text-align: left;
+}
+
+.product {
+  text-align: left;
+  margin: 0;
+}
 .delivery-logo,
 .payment-logo {
   aspect-ratio: 540/371;
@@ -187,6 +195,35 @@ input[type='radio'] {
   border: solid 2px black;
   padding: 10px;
   border-radius: 5px;
+}
+
+.item {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.image-box {
+  width: 25%;
+  margin-right: 5px;
+}
+
+.image-box img {
+  aspect-ratio: 2/1;
+  max-width: 100%;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#comment {
+  resize: none;
+  width: 90%;
 }
 
 @media (max-width: 767px) {

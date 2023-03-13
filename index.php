@@ -10,7 +10,6 @@
     <title>Checkout</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="style.scss">
-    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 
@@ -29,8 +28,8 @@
                 <!-- Informacja o możliwości logowania -->
                 <p>Masz już konto? Kliknij żeby się zalogować.</p>
                 <!-- Kontener dla checkboxa wyboru stworzenia nowego konta -->
-                <div class="checkboxContainer"><label for="innyAdres">
-                        <input type="checkbox" value="innyAdres" name="innyAdres" id="show-form" onclick="newAccount()">
+                <div class="checkboxContainer"><label for="noweKonto">
+                        <input type="checkbox" value="noweKonto" name="noweKonto" id="show-form" onclick="newAccount()">
                         Stwórz nowe
                         konto</label>
                 </div>
@@ -53,8 +52,20 @@
                     <input type="tel" name="phonenumber" placeholder="Telefon*" class="input" minlength="9" required>
                 </div>
                 <!-- Kontener dla checkboxa wyboru dostawy pod inny adres -->
-                <div class="checkboxContainer"> <input type="checkbox" value="innyAdres" name="innyAdres"><label
-                        for="innyAdres"> Dostawa pod inny adres</label> </div>
+                <div class="checkboxContainer"> 
+                    <input type="checkbox" value="innyAdres" name="innyAdres" id="show-form_alt"><label
+                        for="innyAdres"> Dostawa pod inny adres</label> 
+                </div>
+                <div id="form-container_alt" style="display: none;">
+                    <select name="country_alt" id="country">
+                        <option value="polska">Polska</option>
+                        <option value="reszta">Reszta świata</option>
+                    </select>
+                    <input type="text" name="address_alt" placeholder="Adres*" class="input" minlength="3">
+                    <input type="text" name="postcode_alt" placeholder="Kod pocztowy*" class="input" minlength="5">
+                    <input type="text" name="city_alt" placeholder="Miasto*" class="input" minlength="2">
+                    <input type="tel" name="phonenumber_alt" placeholder="Telefon*" class="input" minlength="9">
+                </div>
             </div>
             <!-- Metody dostaw i płatności -->
             <div class="methods">
@@ -64,13 +75,14 @@
                         <h3>2. Metoda dostawy</h3>
                     </div>
                     <!-- Wybór paczkomatu -->
-                    <div class="radio-item" id="paczkomat-container"> <input type="radio" class="input" name="delivery_method"
-                            id="delivery_paczkomaty" value="inpost"> <img class="delivery-logo"
+                    <div class="radio-item" id="paczkomat-container"> <input type="radio" class="input"
+                            name="delivery_method" id="delivery_paczkomaty" value="inpost"> <img class="delivery-logo"
                             src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png" alt=""> <label
                             for="delivery_paczkomaty"> Paczkomaty 24/7 </label> </div>
                     <!-- Wybór kuriera DPD -->
-                    <div class="radio-item" id="kurierdpd-container"> <input type="radio" class="input" name="delivery_method"
-                            id="delivery_dpd_kurier" value="kurierdpd"> <img class="delivery-logo"
+                    <div class="radio-item" id="kurierdpd-container"> <input type="radio" class="input"
+                            name="delivery_method" id="delivery_dpd_kurier" value="kurierdpd"> <img
+                            class="delivery-logo"
                             src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt="">
                         <label for="delivery_dpd_kurier"> Kurier DPD </label>
                     </div>
@@ -87,22 +99,22 @@
                         <h3>3. Metoda płatności</h3>
                     </div>
                     <!-- Wybór płatności przez PayU -->
-                    <div class="radio-item" id="payu-container"> <input type="radio" class="input" name="payment_method" id="payment_payu"
-                            value="payu">
+                    <div class="radio-item" id="payu-container"> <input type="radio" class="input" name="payment_method"
+                            id="payment_payu" value="payu">
                         <img class="payment-logo"
                             src="https://poland.payu.com/wp-content/uploads/sites/14/2020/05/PAYU_LOGO_LIME-990x640.png"
                             alt=""> <label for="payment_payu"> PayU </label>
                     </div>
                     <!-- Wybór płatności przy odbiorze -->
-                    <div class="radio-item" id="odbior-container"> <input type="radio" class="input" name="payment_method" id="payment_odbior"
-                            value="pobranie">
+                    <div class="radio-item" id="odbior-container"> <input type="radio" class="input"
+                            name="payment_method" id="payment_odbior" value="pobranie">
                         <img class="payment-logo"
                             src="https://prestaguru.pl/blog/wp-content/uploads/2021/09/platnosc-za-pobraniem-cod-prestaguru.png"
                             alt=""> <label for="payment_odbior"> Płatności przy odbiorze </label>
                     </div>
                     <!-- Wybór przelewu bankowego - zwykłego -->
-                    <div class="radio-item" id="zwykly-container"> <input type="radio" class="input" name="payment_method"
-                            id="payment_przelew" value="przelew_zwykly">
+                    <div class="radio-item" id="zwykly-container"> <input type="radio" class="input"
+                            name="payment_method" id="payment_przelew" value="przelew_zwykly">
                         <img class="payment-logo" src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png"
                             alt=""> <label for="payment_przelew"> Przelew bankowy - zwykły </label>
                     </div>
@@ -158,9 +170,10 @@
                 require_once 'includes/ItemGenerator.php';
                 $itemGenerator = new ItemGenerator(3);
                 $items = $itemGenerator->generateItems();
-                echo $items;
-                $amount = $itemGenerator->getAmount(); // pobranie sumy za pomocą metody getSum()
+                echo $items[0];
+                $amount = $itemGenerator->getAmount(); // pobranie sumy za pomocą metody getAmount()
                 ?>
+                <div id="products-list" data-list="<?php echo $items[1]; ?>" style="display:none;"></div>
                 <!-- Kwota częściowa i łączna -->
                 <hr class="hr-top">
                 <div class="partial">
@@ -177,7 +190,8 @@
                 </div>
                 <hr class="hr-bot">
                 <!-- Komentarz -->
-                <textarea name="comment" id="comment" cols="25" rows="5" maxlength="500" placeholder="Komentarz"></textarea>
+                <textarea name="comment" id="comment" cols="25" rows="5" maxlength="500"
+                    placeholder="Komentarz"></textarea>
                 <!-- Newsletter -->
                 <div class="checkboxContainer">
                     <input type="checkbox" value="innyAdres" name="innyAdres"><label for="innyAdres"> Zapisz się, aby
