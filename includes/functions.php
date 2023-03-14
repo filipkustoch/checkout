@@ -43,4 +43,15 @@ function validateAddress($address) {
     return $escapedAddress;
   }
   
+function validatePostCode($postCode) {
+  // usuwamy spacje z początku i końca ciągu
+$postcode = trim($postCode);
+
+// sprawdzamy, czy kod pocztowy ma co najmniej 5 znaków
+if (strlen($postcode) < 5) {
+  return "Kod pocztowy musi składać się z co najmniej 5 znaków";
+} else {
+  return $postcode;
+}
+}
 ?>

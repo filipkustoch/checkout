@@ -52,19 +52,19 @@
                     <input type="tel" name="phonenumber" placeholder="Telefon*" class="input" minlength="9" required>
                 </div>
                 <!-- Kontener dla checkboxa wyboru dostawy pod inny adres -->
-                <div class="checkboxContainer"> 
-                    <input type="checkbox" value="innyAdres" name="innyAdres" id="show-form_alt"><label
-                        for="innyAdres"> Dostawa pod inny adres</label> 
+                <div class="checkboxContainer">
+                    <input type="checkbox" value="innyAdres" name="innyAdres" id="show-form_alt"><label for="innyAdres">
+                        Dostawa pod inny adres</label>
                 </div>
                 <div id="form-container_alt" style="display: none;">
                     <select name="country_alt" id="country">
                         <option value="polska">Polska</option>
                         <option value="reszta">Reszta świata</option>
                     </select>
-                    <input type="text" name="address_alt" placeholder="Adres*" class="input" minlength="3">
-                    <input type="text" name="postcode_alt" placeholder="Kod pocztowy*" class="input" minlength="5">
-                    <input type="text" name="city_alt" placeholder="Miasto*" class="input" minlength="2">
-                    <input type="tel" name="phonenumber_alt" placeholder="Telefon*" class="input" minlength="9">
+                    <input type="text" name="address_alt" placeholder="Adres" class="input" minlength="3">
+                    <input type="text" name="postcode_alt" placeholder="Kod pocztowy" class="input" minlength="5">
+                    <input type="text" name="city_alt" placeholder="Miasto" class="input" minlength="2">
+                    <input type="tel" name="phonenumber_alt" placeholder="Telefon" class="input" minlength="9">
                 </div>
             </div>
             <!-- Metody dostaw i płatności -->
@@ -75,22 +75,35 @@
                         <h3>2. Metoda dostawy</h3>
                     </div>
                     <!-- Wybór paczkomatu -->
-                    <div class="radio-item" id="paczkomat-container"> <input type="radio" class="input"
-                            name="delivery_method" id="delivery_paczkomaty" value="inpost"> <img class="delivery-logo"
-                            src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png" alt=""> <label
-                            for="delivery_paczkomaty"> Paczkomaty 24/7 </label> </div>
+                    <div class="radio-item radio-item-delivery" id="paczkomat-container"> 
+                        <div class="delivery_info"> <input type="radio" class="input" name="delivery_method"
+                                id="delivery_paczkomaty" value="inpost" required> <img class="delivery-logo"
+                                src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png" alt="">
+                            <label for="delivery_paczkomaty"> Paczkomaty 24/7 </label>
+                        </div>
+                        <div class="delivery_price" id="paczkomat-price">10.99 zł</div>
+                    </div>
                     <!-- Wybór kuriera DPD -->
-                    <div class="radio-item" id="kurierdpd-container"> <input type="radio" class="input"
-                            name="delivery_method" id="delivery_dpd_kurier" value="kurierdpd"> <img
-                            class="delivery-logo"
-                            src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt="">
-                        <label for="delivery_dpd_kurier"> Kurier DPD </label>
+                    <div class="radio-item radio-item-delivery" id="kurierdpd-container">
+                        <div class="delivery_info">
+                            <input type="radio" class="input" name="delivery_method" id="delivery_dpd_kurier"
+                                value="kurierdpd" required> <img class="delivery-logo"
+                                src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg"
+                                alt="">
+                            <label for="delivery_dpd_kurier"> Kurier DPD </label>
+                        </div>
+                        <div class="delivery_price" id="kurierdpd-price">18.00 zł</div>
                     </div>
                     <!-- Wybór kuriera DPD z opcją pobrania -->
-                    <div class="radio-item"> <input type="radio" class="input" name="delivery_method"
-                            id="delivery_dpd_pobranie" value="kurierdpd_pobranie"> <img class="delivery-logo"
-                            src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg" alt="">
-                        <label for="delivery_dpd_pobranie"> Kurier DPD pobranie </label>
+                    <div class="radio-item radio-item-delivery">
+                        <div class="delivery_info">
+                            <input type="radio" class="input" name="delivery_method" id="delivery_dpd_pobranie"
+                                value="kurierdpd_pobranie" required> <img class="delivery-logo"
+                                src="https://www.jakimkurierem.pl/wp-content/uploads/2018/03/logo-dpd-kurier.jpg"
+                                alt="">
+                            <label for="delivery_dpd_pobranie"> Kurier DPD pobranie </label>
+                        </div>
+                        <div class="delivery_price" id="kurierdpd-pobranie-price">22.00 zł</div>
                     </div>
                 </div>
                 <!-- Sekcja z metodami płatności -->
@@ -100,21 +113,21 @@
                     </div>
                     <!-- Wybór płatności przez PayU -->
                     <div class="radio-item" id="payu-container"> <input type="radio" class="input" name="payment_method"
-                            id="payment_payu" value="payu">
+                            id="payment_payu" value="payu" required>
                         <img class="payment-logo"
                             src="https://poland.payu.com/wp-content/uploads/sites/14/2020/05/PAYU_LOGO_LIME-990x640.png"
                             alt=""> <label for="payment_payu"> PayU </label>
                     </div>
                     <!-- Wybór płatności przy odbiorze -->
                     <div class="radio-item" id="odbior-container"> <input type="radio" class="input"
-                            name="payment_method" id="payment_odbior" value="pobranie">
+                            name="payment_method" id="payment_odbior" value="pobranie" required>
                         <img class="payment-logo"
                             src="https://prestaguru.pl/blog/wp-content/uploads/2021/09/platnosc-za-pobraniem-cod-prestaguru.png"
                             alt=""> <label for="payment_odbior"> Płatności przy odbiorze </label>
                     </div>
                     <!-- Wybór przelewu bankowego - zwykłego -->
                     <div class="radio-item" id="zwykly-container"> <input type="radio" class="input"
-                            name="payment_method" id="payment_przelew" value="przelew_zwykly">
+                            name="payment_method" id="payment_przelew" value="przelew_zwykly" required>
                         <img class="payment-logo" src="https://upload.wikimedia.org/wikipedia/commons/8/81/Przelew.png"
                             alt=""> <label for="payment_przelew"> Przelew bankowy - zwykły </label>
                     </div>
@@ -184,7 +197,7 @@
                 </div>
                 <div class="total">
                     <p>Łącznie</p>
-                    <p style="text-align: right;" id="discount-input">
+                    <p style="text-align: right;" id="final-price">
                         <?php echo $amount; ?> zł
                     </p>
                 </div>

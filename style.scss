@@ -87,6 +87,10 @@ input[type='radio'] {
   align-items: center;
 }
 
+.radio-item-delivery {
+  justify-content: space-between;
+}
+
 .payments button {
   border-color: gray;
   color: gray;
@@ -221,6 +225,16 @@ form {
 #comment {
   resize: none;
   width: 90%;
+}
+
+.delivery_info {
+  display: flex;
+  align-items: center;
+}
+
+.delivery_price{
+  font-weight: bold;
+  padding-right: 10px;
 }
 
 @media (max-width: 767px) {
