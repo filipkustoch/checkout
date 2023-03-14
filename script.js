@@ -41,7 +41,12 @@ function sendData(event) {
   const formData = new FormData(event.target);
 
   // Pobranie wartości ceny końcowej ze strony i dodanie jej do formData
-  let amount = parseFloat(document.getElementById('final-price').innerHTML.replace(',', '.').replace(/[^0-9.]/g, ''));
+  let amount = parseFloat(
+    document
+      .getElementById('final-price')
+      .innerHTML.replace(',', '.')
+      .replace(/[^0-9.]/g, '')
+  );
   formData.append('amount', amount);
 
   // Pobranie listy produktów z atrybutu data-list elementu products-list i dodanie jej do formData
@@ -83,8 +88,12 @@ function sendData(event) {
 // Wyświetl pole na kod rabatowy, jeśli została wybrana metoda dostawy i metoda płatności.
 function showDiscountCode() {
   // Pobranie wybranej metody dostawy i metody płatności
-  const deliverySelected = document.querySelector('input[name="delivery_method"]:checked');
-  const paymentSelected = document.querySelector('input[name="payment_method"]:checked');
+  const deliverySelected = document.querySelector(
+    'input[name="delivery_method"]:checked'
+  );
+  const paymentSelected = document.querySelector(
+    'input[name="payment_method"]:checked'
+  );
 
   // Sprawdzenie, czy obie wartości są zdefiniowane
   if (deliverySelected && paymentSelected) {
@@ -96,25 +105,42 @@ function showDiscountCode() {
   }
 }
 
-// zastosowanie pola rabatowego w tym przypadku na sztywno 10%
+//  Ta funkcja stosuje pole rabatowe o stałej wartości 10% do wartości ostatecznej ceny.
 function applyDiscount() {
+  // Pobranie wartości ostatecznej ceny
   let discountCode = document.getElementById('final-price');
+  // Usunięcie znaków innych niż cyfry i kropki z tekstu
   discountAmount = parseFloat(discountCode.innerText.replace(/[^0-9.,]/g, ''));
 
+  // Obniżenie ceny o 10% i dodanie końcówki "zł"
   roundedAmount = (discountAmount * 0.9).toFixed(2) + ' zł';
+  // Ustawienie nowej wartości ostatecznej ceny
   discountCode.innerHTML = roundedAmount;
+  // Wyłączenie przycisku stosowania kodu rabatowego aby ograniczyć użycie kodu do jednego razu
   document.getElementById('apply-discount').disabled = true;
+
+  // Zablokowanie możliwości wyboru nowego sposobu dostawy ze względu na aktualną logikę systemu
+  const deliveryOptions = document.querySelectorAll(
+    'input[name="delivery_method"]'
+  );
+  deliveryOptions.forEach((option) => {
+    option.disabled = true;
+  });
 }
 
 // CENY DOSTAW
 
+// Pobranie elementów z ceną dostawy
 const deliveryPrices = document.querySelectorAll('.delivery_price');
 
-// zapisz ceny w osobnych zmiennych
+// Zapisanie wartości cen w osobnych zmiennych
 let paczkomatPrice, kurierdpdPrice, kurierdpdPobraniePrice;
 
+// Iteracja po wszystkich elementach z klasą .delivery_price
 deliveryPrices.forEach(function (price) {
+  // Pobranie wartości ceny i usunięcie "zł"
   const priceValue = parseFloat(price.innerText.replace('zł', ''));
+  // Zapisanie wartości w osobnej zmiennej na podstawie identyfikatora elementu
   if (price.id === 'paczkomat-price') {
     paczkomatPrice = priceValue;
   } else if (price.id === 'kurierdpd-price') {
@@ -124,17 +150,21 @@ deliveryPrices.forEach(function (price) {
   }
 });
 
+// Pobranie elementu z id final-price i zamiana jego wartości na liczbę
 const finalPrice = document.getElementById('final-price');
 const initialPriceFloat = parseFloat(
   finalPrice.innerText.replace(/[^0-9]/g, '')
 );
 
+// Funkcja zmieniająca wartość ostatecznej ceny w zależności od wybranej metody dostawy
 function changeFinalPriceDelivery() {
+  // Pobranie wybranej metody dostawy
   const deliveryMethod = document.querySelector(
     'input[name="delivery_method"]:checked'
   ).value;
 
   let deliveryPrice;
+  // Wybór odpowiedniej wartości ceny dostawy na podstawie wybranej metody dostawy
   switch (deliveryMethod) {
     case 'inpost':
       deliveryPrice = paczkomatPrice;
@@ -149,57 +179,70 @@ function changeFinalPriceDelivery() {
       deliveryPrice = 0;
   }
 
+  // Obliczenie nowej wartości ostatecznej ceny
   const newPrice = initialPriceFloat + deliveryPrice;
+  // Ustawienie nowej wartości ostatecznej ceny z dodaniem końcówki "zł"
   finalPrice.innerText = newPrice.toFixed(2) + ' zł';
 }
 
+// Pobranie wszystkich elementów input z atrybutem name="delivery_method"
 const deliveryRadios = document.querySelectorAll(
   'input[name="delivery_method"]'
 );
+// Dodanie event listenera dla każdego elementu
 deliveryRadios.forEach(function (radio) {
   radio.addEventListener('change', changeFinalPriceDelivery);
 });
 
-// pokazywanie odpowiednich pól płatności zależnie od dostawy
+// Funkcja pokazuje odpowiednie pola płatności w zależności od wybranego sposobu dostawy
 function paymentMethods() {
+  // Pobranie wartości wybranego sposobu dostawy
   const deliveryMethod = document.querySelector(
     'input[name="delivery_method"]:checked'
   ).value;
+  // Pobranie kontenerów dla poszczególnych sposobów płatności
   const payu = document.getElementById('payu-container');
   const zwykly = document.getElementById('zwykly-container');
+
+  // Jeśli wybrano opcję pobrania, to wyłącz wyświetlanie innych płatności
   if (deliveryMethod == 'kurierdpd_pobranie') {
     payu.style.display = 'none';
     zwykly.style.display = 'none';
   } else {
+    // W przeciwnym wypadku, wyświetl pola płatności
     payu.style.display = 'flex';
     zwykly.style.display = 'flex';
   }
 }
 
+// Dodanie event listenera dla każdego wyboru sposobu dostawy
 const radioButtons = document.querySelectorAll('input[name="delivery_method"]');
 radioButtons.forEach((radioButton) => {
   radioButton.addEventListener('click', paymentMethods);
 });
 
-// walidacja imienia
+// Funkcja odpowiedzialna za walidację imienia
 
+// Pobranie elementu input odpowiadającego za imię
 const firstnameInput = document.querySelector('input[name="firstname"]');
 
 function validateFirstnameInput() {
+  // Pobranie wartości imienia z pola formularza i usunięcie białych znaków na początku i końcu
   const firstnameValue = firstnameInput.value.trim();
+  // Wyrażenie regularne do dopasowania tylko liter z polskimi znakami
   const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/;
 
+  // Sprawdzenie, czy wartość imienia pasuje do wyrażenia regularnego
   if (!nameRegex.test(firstnameValue)) {
+    // Ustawienie komunikatu o błędzie
     firstnameInput.setCustomValidity('Imię powinno zawierać tylko litery.');
   } else {
-    const lastSpaceIndex = firstnameValue.lastIndexOf(' ');
-    if (lastSpaceIndex !== -1) {
-      firstnameInput.value = firstnameValue.substring(0, lastSpaceIndex);
-    }
+    // Usunięcie komunikatu o błędzie
     firstnameInput.setCustomValidity('');
   }
 }
 
+// Dodanie event listenera
 firstnameInput.addEventListener('input', validateFirstnameInput);
 
 // walidacja nazwiska
@@ -243,9 +286,10 @@ function validatePostcodeInput() {
   const postcodeValue = postcodeInput.value.trim();
   const postcodeRegex = /^[0-9-]+$/;
 
-
   if (postcodeValue.length < 5) {
-    postcodeInput.setCustomValidity('Kod pocztowy musi składać się z co najmniej 5 znaków.');
+    postcodeInput.setCustomValidity(
+      'Kod pocztowy musi składać się z co najmniej 5 znaków.'
+    );
   } else if (!postcodeRegex.test(postcodeValue)) {
     postcodeInput.setCustomValidity('Kod pocztowy może zawierać tylko cyfry.');
   } else {
@@ -263,7 +307,9 @@ function validateCityInput() {
   const cityRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s-]+$/;
 
   if (!cityRegex.test(cityValue)) {
-    cityInput.setCustomValidity('Wprowadź poprawną nazwę miasta, zawierającą tylko litery, myślniki i spacje.');
+    cityInput.setCustomValidity(
+      'Wprowadź poprawną nazwę miasta, zawierającą tylko litery, myślniki i spacje.'
+    );
   } else {
     cityInput.setCustomValidity('');
   }
@@ -271,7 +317,7 @@ function validateCityInput() {
 
 cityInput.addEventListener('input', validateCityInput);
 
-//walidacja numeru telefonu 
+//walidacja numeru telefonu
 
 const phoneInput = document.querySelector('input[name="phonenumber"]');
 
@@ -280,7 +326,9 @@ function validatePhoneInput() {
   const phoneRegex = /^[\d+\s-]{9,}$/;
 
   if (!phoneRegex.test(phoneValue)) {
-    phoneInput.setCustomValidity('Wprowadź poprawny numer telefonu, składający się z co najmniej 9 cyfr');
+    phoneInput.setCustomValidity(
+      'Wprowadź poprawny numer telefonu, składający się z co najmniej 9 cyfr'
+    );
   } else {
     phoneInput.setCustomValidity('');
   }
@@ -312,11 +360,14 @@ function validatePostcodeInputAlt() {
   const postcodeValueAlt = postcodeInputAlt.value.trim();
   const postcodeRegexAlt = /^[0-9-]+$/;
 
-
   if (postcodeValueAlt.length < 5) {
-    postcodeInputAlt.setCustomValidity('Kod pocztowy musi składać się z co najmniej 5 znaków.');
+    postcodeInputAlt.setCustomValidity(
+      'Kod pocztowy musi składać się z co najmniej 5 znaków.'
+    );
   } else if (!postcodeRegexAlt.test(postcodeValueAlt)) {
-    postcodeInputAlt.setCustomValidity('Kod pocztowy może zawierać tylko cyfry.');
+    postcodeInputAlt.setCustomValidity(
+      'Kod pocztowy może zawierać tylko cyfry.'
+    );
   } else {
     postcodeInputAlt.setCustomValidity('');
   }
@@ -332,7 +383,9 @@ function validateCityInputAlt() {
   const cityRegexAlt = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s-]+$/;
 
   if (!cityRegexAlt.test(cityValueAlt)) {
-    cityInputAlt.setCustomValidity('Wprowadź poprawną nazwę miasta, zawierającą tylko litery, myślniki i spacje.');
+    cityInputAlt.setCustomValidity(
+      'Wprowadź poprawną nazwę miasta, zawierającą tylko litery, myślniki i spacje.'
+    );
   } else {
     cityInputAlt.setCustomValidity('');
   }
@@ -340,7 +393,7 @@ function validateCityInputAlt() {
 
 cityInputAlt.addEventListener('input', validateCityInputAlt);
 
-//walidacja numeru telefonu 
+//walidacja numeru telefonu
 
 const phoneInputAlt = document.querySelector('input[name="phonenumber_alt"]');
 
@@ -349,7 +402,9 @@ function validatePhoneInputAlt() {
   const phoneRegexAlt = /^[\d+\s-]{9,}$/;
 
   if (!phoneRegexAlt.test(phoneValueAlt)) {
-    phoneInputAlt.setCustomValidity('Wprowadź poprawny numer telefonu, składający się z co najmniej 9 cyfr');
+    phoneInputAlt.setCustomValidity(
+      'Wprowadź poprawny numer telefonu, składający się z co najmniej 9 cyfr'
+    );
   } else {
     phoneInputAlt.setCustomValidity('');
   }
