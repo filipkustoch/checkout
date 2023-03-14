@@ -11,27 +11,38 @@ function newAccount() {
     if (checkbox.checked) {
       // Jeśli checkbox jest zaznaczony, pokazujemy formularz
       formContainer.style.display = 'block';
-      if (checkboxAlt.checked) {
-        formContainerAlt.style.display = 'block';
-      }
     } else {
       // W przeciwnym razie ukrywamy formularz
       formContainer.style.display = 'none';
-      if (checkboxAlt.checked) {
-        formContainerAlt.style.display = 'none';
-      }
     }
   });
 
   checkboxAlt.addEventListener('change', function () {
-    if (checkboxAlt.checked && checkbox.checked) {
-      // Jeśli drugi checkbox jest zaznaczony i pierwszy jest też zaznaczony, pokazujemy drugi formularz
+    if (checkboxAlt.checked) {
+      // Jeśli drugi checkbox jest zaznaczony pokazujemy drugi formularz
       formContainerAlt.style.display = 'block';
     } else {
       // W przeciwnym razie ukrywamy drugi formularz
       formContainerAlt.style.display = 'none';
     }
   });
+}
+
+function makeRequired() {
+  const checkbox = document.getElementById('show-form_alt');
+  const formInputs = document.querySelectorAll(
+    "#form-container_alt input"
+  );
+
+  if (checkbox.checked) {
+    formInputs.forEach((input) => {
+      input.setAttribute('required', '');
+    });
+  } else {
+    formInputs.forEach((input) => {
+      input.removeAttribute('required');
+    });
+  }
 }
 
 // Wysłanie zapytania AJAX za pomocą vanilla JavaScript całego formularza
@@ -54,6 +65,14 @@ function sendData(event) {
     .getElementById('products-list')
     .getAttribute('data-list');
   formData.append('listOfProducts', listOfProducts);
+
+  // Pobranie informacji o newsletterze
+  const newsletter = document.getElementById("newsletter");
+  let newsletterState = 0;
+  if (newsletter.checked){
+    newsletterState = 1;
+  }
+  formData.append('newsletter', newsletterState);
 
   // Zapobiegnięcie domyślnej akcji eventu czyli wysłania formularza, która polega na przeładowaniu strony.
   event.preventDefault();
@@ -124,7 +143,7 @@ function applyDiscount() {
     'input[name="delivery_method"]'
   );
   deliveryOptions.forEach((option) => {
-    option.disabled = true;
+    option.setAttribute("onclick", "return false;");
   });
 }
 
@@ -218,7 +237,7 @@ function paymentMethods() {
 // Dodanie event listenera dla każdego wyboru sposobu dostawy
 const radioButtons = document.querySelectorAll('input[name="delivery_method"]');
 radioButtons.forEach((radioButton) => {
-  radioButton.addEventListener('click', paymentMethods);
+  radioButton.addEventListener('change', paymentMethods);
 });
 
 // Funkcja odpowiedzialna za walidację imienia
@@ -336,6 +355,47 @@ function validatePhoneInput() {
 
 phoneInput.addEventListener('input', validatePhoneInput);
 
+// Funkcja odpowiedzialna za walidację alt imienia
+
+// Pobranie elementu input odpowiadającego za imię
+const firstnameInputAlt = document.querySelector('input[name="firstname_alt"]');
+
+function validateFirstnameInputAlt() {
+  // Pobranie wartości imienia z pola formularza i usunięcie białych znaków na początku i końcu
+  const firstnameValueAlt = firstnameInputAlt.value.trim();
+  // Wyrażenie regularne do dopasowania tylko liter z polskimi znakami
+  const nameRegexAlt = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/;
+
+  // Sprawdzenie, czy wartość imienia pasuje do wyrażenia regularnego
+  if (!nameRegexAlt.test(firstnameValueAlt)) {
+    // Ustawienie komunikatu o błędzie
+    firstnameInputAlt.setCustomValidity('Imię powinno zawierać tylko litery.');
+  } else {
+    // Usunięcie komunikatu o błędzie
+    firstnameInputAlt.setCustomValidity('');
+  }
+}
+
+// Dodanie event listenera
+firstnameInputAlt.addEventListener('input', validateFirstnameInputAlt);
+
+// walidacja alt nazwiska
+
+const lastnameInputAlt = document.querySelector('input[name="lastname_alt"]');
+
+function validateLastnameInputAlt() {
+  const lastnameValueAlt = lastnameInputAlt.value.trim();
+  const lastnameRegexAlt = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/;
+
+  if (!lastnameRegexAlt.test(lastnameValueAlt)) {
+    lastnameInputAlt.setCustomValidity('Nazwisko powinno zawierać tylko litery.');
+  } else {
+    lastnameInputAlt.setCustomValidity('');
+  }
+}
+
+lastnameInputAlt.addEventListener('input', validateLastnameInputAlt);
+
 // walidacja alt adresu
 
 const addressInputAlt = document.querySelector('input[name="address_alt"]');
@@ -393,7 +453,7 @@ function validateCityInputAlt() {
 
 cityInputAlt.addEventListener('input', validateCityInputAlt);
 
-//walidacja numeru telefonu
+//walidacja alt numeru telefonu
 
 const phoneInputAlt = document.querySelector('input[name="phonenumber_alt"]');
 

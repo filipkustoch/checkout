@@ -67,7 +67,7 @@ function validateCity($city)
     return "Proszę podać miasto.";
   }
   // Sprawdzenie, czy miasto składa się tylko z liter i białych znaków
-  if (!preg_match("/^[a-zA-Z\s]+$/", $city)) {
+  if (!preg_match("/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s-]+$/", $city)) {
     return "Miasto powinno składać się tylko z liter.";
   }
   // Sprawdzenie, czy miasto ma co najmniej 2 znaki

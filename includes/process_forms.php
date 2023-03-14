@@ -3,27 +3,33 @@ include "db.php";
 include "functions.php";
 
 // sanitize wartości przesyłanych z formularza
-$firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
-$lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
-$country = filter_var($_POST['country'], FILTER_SANITIZE_STRING);
-$address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
-$postcode = filter_var($_POST['postcode'], FILTER_SANITIZE_STRING);
-$city = filter_var($_POST['city'], FILTER_SANITIZE_STRING);
-$phonenumber = filter_var($_POST['phonenumber'], FILTER_SANITIZE_STRING);
-$delivery_method = filter_var($_POST['delivery_method'], FILTER_SANITIZE_STRING);
-$payment_method = filter_var($_POST['payment_method'], FILTER_SANITIZE_STRING);
-$comment = filter_var($_POST['comment'], FILTER_SANITIZE_STRING);
+$firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES);
+$lastname = htmlspecialchars($_POST['lastname'], ENT_QUOTES);
+$country = htmlspecialchars($_POST['country'], ENT_QUOTES);
+$address = htmlspecialchars($_POST['address'], ENT_QUOTES);
+$postcode = htmlspecialchars($_POST['postcode'], ENT_QUOTES);
+$city = htmlspecialchars($_POST['city'], ENT_QUOTES);
+$phonenumber = htmlspecialchars($_POST['phonenumber'], ENT_QUOTES);
+$delivery_method = htmlspecialchars($_POST['delivery_method'], ENT_QUOTES);
+$payment_method = htmlspecialchars($_POST['payment_method'], ENT_QUOTES);
+$comment = htmlspecialchars($_POST['comment'], ENT_QUOTES);
 $amount = filter_var($_POST['amount'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-$listOfProducts = filter_var($_POST['listOfProducts'], FILTER_SANITIZE_STRING);
+$listOfProducts = htmlspecialchars($_POST['listOfProducts'], ENT_QUOTES);
 // Inny adres
-$country_alt = filter_var($_POST['country_alt'], FILTER_SANITIZE_STRING);
-$address_alt = filter_var($_POST['address_alt'], FILTER_SANITIZE_STRING);
-$postcode_alt = filter_var($_POST['postcode_alt'], FILTER_SANITIZE_STRING);
-$city_alt = filter_var($_POST['city_alt'], FILTER_SANITIZE_STRING);
-$phonenumber_alt = filter_var($_POST['phonenumber_alt'], FILTER_SANITIZE_STRING);
+$firstname_alt = htmlspecialchars($_POST['firstname_alt'], ENT_QUOTES);
+$lastname_alt = htmlspecialchars($_POST['lastname_alt'], ENT_QUOTES);
+$country_alt = htmlspecialchars($_POST['country_alt'], ENT_QUOTES);
+$address_alt = htmlspecialchars($_POST['address_alt'], ENT_QUOTES);
+$postcode_alt = htmlspecialchars($_POST['postcode_alt'], ENT_QUOTES);
+$city_alt = htmlspecialchars($_POST['city_alt'], ENT_QUOTES);
+$phonenumber_alt = htmlspecialchars($_POST['phonenumber_alt'], ENT_QUOTES);
+$newsletter = $_POST['newsletter'];
+
 
 // Nadpisywanie jeżeli nie są puste pola
 $alternateFields = array(
+  'firstname' => $firstname_alt,
+  'lastname' => $lastname_alt,
   'country' => $country_alt,
   'address' => $address_alt,
   'postcode' => $postcode_alt,
@@ -57,13 +63,13 @@ $validatedPhoneNumber = validatePhoneNumber($phonenumber);
 
 // sprawdzenie wartości liczbowych pola "amount" czyli ceny
 if (!is_numeric($amount) || $amount <= 0) {
-    die("Nieprawidłowa wartość pola 'amount'");
-  }
+  die("Nieprawidłowa wartość pola 'amount'");
+}
 
 // przygotowanie zapytania SQL
-$query = "INSERT INTO zamowienia (imie, nazwisko, kraj, adres, kod_pocztowy, miasto, telefon, dostawa, platnosc, komentarz, kwota,lista) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$query = "INSERT INTO zamowienia (imie, nazwisko, kraj, adres, kod_pocztowy, miasto, telefon, dostawa, platnosc, komentarz, kwota, lista, newsletter) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $connection->prepare($query);
-$stmt->execute([$validatedFirstname, $validatedLastname, $country, $validatedAddress, $validatedPostcode, $validatedCity, $validatedPhoneNumber, $delivery_method, $payment_method, $comment, $amount, $listOfProducts]);
+$stmt->execute([$validatedFirstname, $validatedLastname, $country, $validatedAddress, $validatedPostcode, $validatedCity, $validatedPhoneNumber, $delivery_method, $payment_method, $comment, $amount, $listOfProducts, $newsletter]);
 
 // zwrócenie numeru zamówienia i kwoty
 echo mysqli_insert_id($connection) . " na kwotę " . $amount . " zł";

@@ -24,7 +24,7 @@
                     <h3>1. Twoje dane</h3>
                 </div>
                 <!-- Przycisk logowania -->
-                <button type="button" onclick="">Logowanie</button>
+                <button type="button" onclick="" id="logowanie">Logowanie</button>
                 <!-- Informacja o możliwości logowania -->
                 <p>Masz już konto? Kliknij żeby się zalogować.</p>
                 <!-- Kontener dla checkboxa wyboru stworzenia nowego konta -->
@@ -53,10 +53,13 @@
                 </div>
                 <!-- Kontener dla checkboxa wyboru dostawy pod inny adres -->
                 <div class="checkboxContainer">
-                    <input type="checkbox" value="innyAdres" name="innyAdres" id="show-form_alt"><label for="innyAdres">
+                    <input type="checkbox" value="innyAdres" name="innyAdres" id="show-form_alt"
+                        onclick="newAccount(); makeRequired();"><label for="innyAdres">
                         Dostawa pod inny adres</label>
                 </div>
                 <div id="form-container_alt" style="display: none;">
+                    <input type="text" name="firstname_alt" id="" placeholder="Imię" class="input" minlength="2">
+                    <input type="text" name="lastname_alt" placeholder="Nazwisko" class="input" minlength="2">
                     <select name="country_alt" id="country">
                         <option value="polska">Polska</option>
                         <option value="reszta">Reszta świata</option>
@@ -75,7 +78,7 @@
                         <h3>2. Metoda dostawy</h3>
                     </div>
                     <!-- Wybór paczkomatu -->
-                    <div class="radio-item radio-item-delivery" id="paczkomat-container"> 
+                    <div class="radio-item radio-item-delivery" id="paczkomat-container">
                         <div class="delivery_info"> <input type="radio" class="input" name="delivery_method"
                                 id="delivery_paczkomaty" value="inpost" required> <img class="delivery-logo"
                                 src="https://inpost.pl/sites/default/files/InPost_logotype_2019_white.png" alt="">
@@ -207,7 +210,7 @@
                     placeholder="Komentarz"></textarea>
                 <!-- Newsletter -->
                 <div class="checkboxContainer">
-                    <input type="checkbox" value="innyAdres" name="innyAdres"><label for="innyAdres"> Zapisz się, aby
+                    <input type="checkbox" value="innyAdres" name="innyAdres" id="newsletter"><label for="innyAdres"> Zapisz się, aby
                         otrzymywać newsletter</label>
                 </div>
                 <!-- Regulamin -->
@@ -220,6 +223,35 @@
         <div id="podziekowanie"></div>
     </div>
     </div>
+    <!-- Popup -->
+    <div class="popup" style="display: none;">
+        <div class="popup-form">
+            <form id="popupform">
+                <label for="usernamepopup">Login:</label>
+                <input type="text" id="usernamepopup" name="usernamepopup"><br><br>
+                <label for="passwordpopup">Hasło:</label>
+                <input type="password" id="passwordpopup" name="passwordpopup"><br><br>
+                <input type="button" value="Zaloguj"><br>
+                <input type="button" value="Zamknij okno" id="closepopup">
+
+            </form>
+        </div>
+    </div>
+    <!-- Popup skrypt -->
+    <script>
+        const popup = document.querySelector('.popup');
+        const loginButton = document.getElementById('logowanie');
+        const closepopup = document.getElementById('closepopup');
+
+        loginButton.addEventListener('click', () => {
+            popup.style.display = "flex";
+        });
+
+        closepopup.addEventListener('click', () => {
+            popup.style.display = "none";
+        });
+
+    </script>
     <!-- Skrypt JS -->
     <script src="script.js"></script>
 </body>
