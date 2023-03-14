@@ -17,7 +17,14 @@
 <code>vendor/bin/phpunit phoneNumberValidationTest.php</code>
 </ul>
 <h2>Baza danych</h2>
-<p>Projekt korzysta z bazy danych MySQL. Schemat bazy danych znajduje się w pliku database.sql. Aby utworzyć schemat bazy danych, należy zaimportować ten plik do bazy danych.</p>
+<p>Projekt korzysta z bazy danych MySQL. Schemat bazy danych znajduje się w pliku <code>checkout.sql</code>. Aby utworzyć schemat bazy danych, należy zaimportować ten plik do bazy danych.</p>
 
 <h2>Uruchomienie</h2>
-<p>Aby uruchomić projekt, należy wpisać adres URL do pliku index.php w przeglądarce internetowej.</p>
+<p>Aby uruchomić projekt, należy wpisać adres URL do pliku <code>index.php</code> w przeglądarce internetowej.</p>
+
+<h2>Kody rabatowe</h2>
+<ul>
+  <li>Kod aktywny: <code>kod1</code></li>
+  <li>Kod nieaktywny w bazie danych: <code>kod2</code></li>
+  <li>Każdy inny wprowadzony kod również jest traktowany jako nieaktywny</li>
+</ul>
