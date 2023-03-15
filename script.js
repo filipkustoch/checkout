@@ -471,3 +471,19 @@ function validatePhoneInputAlt() {
 }
 
 phoneInputAlt.addEventListener('input', validatePhoneInputAlt);
+
+// Sprawdzanie haseł
+
+const confirmPassword = document.getElementById("confirmPassword");
+
+function checkPasswordMatch() {
+  const password = document.getElementById("password");
+
+  if (password.value != confirmPassword.value) {
+    confirmPassword.setCustomValidity("Hasła nie pasują do siebie.");
+  } else {
+    confirmPassword.setCustomValidity('');
+  }
+}
+
+confirmPassword.addEventListener('input', checkPasswordMatch);

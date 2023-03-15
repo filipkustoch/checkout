@@ -37,8 +37,8 @@
                 <div id="form-container" style="display: none;">
                     <!-- Pola do wprowadzenia danych nowego konta -->
                     <input type="text" name="login" placeholder="Login*" class="input" minlength="3" required>
-                    <input type="password" name="password" placeholder="Hasło*" class="input" minlength="8" required>
-                    <input type="password" placeholder="Potwierdź hasło*" class="input" minlength="8" required>
+                    <input type="password" id="password" name="password" placeholder="Hasło*" class="input" minlength="8" required>
+                    <input type="password" id="confirmPassword" placeholder="Potwierdź hasło*" class="input" minlength="8" required>
                     <input type="text" name="firstname" id="" placeholder="Imię*" class="input" minlength="2" required>
                     <input type="text" name="lastname" placeholder="Nazwisko*" class="input" minlength="2" required>
                     <!-- Lista rozwijana do wyboru kraju -->
