@@ -110,8 +110,12 @@ input[type=radio] {
   border-top: 1px dashed gray;
 }
 
-.hr-bot {
+.hr-top, .hr-bot {
   margin-bottom: 10px;
+}
+
+.hr-bot {
+  margin-top: 10px;
 }
 
 .total,
@@ -134,12 +138,6 @@ input[type=radio] {
 }
 .checkboxContainer label {
   font-size: 0.85rem;
-}
-
-.opis h4 {
-  font-weight: 800;
-  font-size: 0.8rem;
-  color: #202020;
 }
 
 .opis {
