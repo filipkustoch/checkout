@@ -1,7 +1,7 @@
 ﻿<h1>Checkout System</h1>
 <h2>Wymagania systemowe</h2>
 <ul>
-<li>PHP 7+</li>
+<li>PHP 8.2+</li>
 <li>MySQL</li>
 <li>Serwer WWW (np. Apache, Nginx)</li>
 <li>Przeglądarka internetowa</li>
